@@ -19,11 +19,18 @@ export const createPlayer = async(req, res) => {
         return res.status(400).json({ success: false, message: 'Please provide a name' });
     }
 
-    const newPlayer = new Player(player)
 
     try {
+        const existingPlayer = Player.findOne({ name: player.name })
+
+        if (existingPlayer) {
+            return res.status(400).json({ success: false, message: 'Player already exists' })
+        }
+
+        const newPlayer = new Player(player)
         await newPlayer.save()
         res.status(201).json({ success: true, data: newPlayer })
+
     } catch (error) {
         console.error('Error in create player', error.message);
         res.status(500).json({ success: false, message: 'Server error' });

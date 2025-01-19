@@ -19,11 +19,19 @@ export const createClub = async (req, res) => {
         return res.status(400).json({ success: false, message: 'Please provide a name' });
     }
 
-    const newClub = new Club(club);
-
     try {
+        const existingClub = await Club.findOne({ name: club.name });
+
+        // Check if a club with the same name already exists
+        if (existingClub) {
+            return res.status(400).json({ success: false, message: 'Club already exists' })
+        }
+
+        // create club if no club with the same name exists yet
+        const newClub = new Club(club);
         await newClub.save();
         res.status(201).json({ success: true, data: newClub });
+        
     } catch (error) {
         console.error('Error in create club', error.message);
         res.status(500).json({ success: false, message: 'Server error' });
