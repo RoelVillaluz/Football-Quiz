@@ -11,6 +11,23 @@ export const getPlayers = async (req, res) => {
     }
 }
 
+export const getRandomPlayer = async (req, res) => {
+    try {
+        const players = await Player.find().populate('clubs', 'name');
+
+        if (players.length > 0) {
+            const randomPlayer = players[Math.floor(Math.random() * players.length)];
+            res.status(200).json({ success: true, data: randomPlayer })
+        } else {
+            res.status(404).json({ success: false, message: 'No players found' })
+        }
+    } catch (error) {
+        console.error('Error', error)
+        res.status(500).json({ success: false, message: 'Server error' });
+    }    
+
+}
+
 // POST /api/players (create a new player)
 export const createPlayer = async(req, res) => {
     const player = req.body;
