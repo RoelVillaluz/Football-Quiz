@@ -1,86 +1,235 @@
-* {
-  font-family: Arial, Helvetica, sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Jockey+One&family=Oxanium:wght@200..800&family=Racing+Sans+One&display=swap');
+
+:root {
+  --primary: #0B0C10;
+  --secondary: #66FCF1;
+  --tertiary: #C5C6C7;
+  --primary-light: #1F2833;
+  --secondary-dark: #45A29E;
+}
+
+html {
+  font-size: 16px;
+  color: white;
 }
 
 body {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  background-color: var(--primary);
 }
 
-#root {
-  height: 100vh;
+p {
+  margin-top: 1rem;
+}
+
+a {
+  text-decoration: none;
 }
 
 .navbar {
-  padding: 0 1rem;
-  background-color: black;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 0 1rem;
 }
 
 .navbar ul {
   display: flex;
-  gap: 1rem;
   list-style-type: none;
 }
 
-.navbar .logo {
-  font-size: 1.5rem;
+.navbar ul li {
+  position: relative;
+  z-index: 2;
 }
 
-.navbar a {
+.navbar ul li a {
+  font-family: "Oxanium", serif;
+  font-size: clamp(0.75rem, 0.9vw, 1.25rem);
+  text-transform: uppercase;
+  position: relative;
   color: white;
-  text-decoration: none;
+  transition: 0.3s;
+  padding: 10px 20px;
+  border-radius: 30px;
+  transition: 0.3s;
+}
+
+.navbar ul li a:hover {
+  background-color: var(--secondary);
+  color: var(--primary);
+}
+
+.logo {
+  font-family: "Jockey One", serif;
+  display: flex;
+  align-items: center;
+}
+
+.logo span {
+  color: white;
+  font-size: clamp(1.5rem, 2.5vw, 3rem);
+  text-transform: uppercase;
+}
+
+.logo .highlight {
+  background: #66FCF1;
+  background: linear-gradient(to right, #66FCF1 0%, #7FEDFC 100%);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.logo i {
+  font-size: 2rem;
+  color: white;
+  margin-left: 0.5rem;
+}
+
+.colored-icon {
+  filter: invert(1);
+  mix-blend-mode: difference;
+  margin-left: 0.5rem;
 }
 
 .container {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  height: 100vh;
+}
+
+.images {
+  width: 100%;
   height: 100%;
-}
-
-.create-section {
-  width: 50%;
+  position: absolute; 
   display: flex;
-  flex-direction: column;
-  text-align: center;
-  padding: 2rem;
-  border: solid 1px black;
+  z-index: -1; 
 }
 
-.form-group {
+.images img {
+  width: calc(100% / 4);
+  height: 100vh;
+  object-fit: cover;
+  filter: brightness(0.75) grayscale(0.5);
+}
+
+.container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background: linear-gradient(to bottom, var(--primary), transparent);
+  z-index: 0;  
+}
+
+.form-container {
+  position: relative;
   display: flex;
+  align-items: center;
+  justify-content: center;
   flex-direction: column;
-  margin: 1rem 0;
+  width: 50vw;
+  height: auto;
+  padding: 2rem 2.5rem;
+  border-radius: 5px;
+  opacity: 0.9;
+  background-color: var(--primary);
+  z-index: 1;  
+  font-family: "Oxanium", serif;
 }
 
-.form-group label {
-  font-weight: 700;
-  margin-bottom: 1rem;
+.form-container figure {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 10vw;
+  min-width: 90px;
+  max-width: 200px;
+  aspect-ratio: 1 / 1;
+  border: solid 1px var(--primary-light);
 }
 
-.form-group input {
-  padding: 10px 16px;
+.form-container figure span {
+  font-size: clamp(0.75rem, 1.5vw, 2rem);
 }
 
-.form-group option {
-  padding: 10px;
+.form-container ul {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  list-style-type: none;
+  padding: 0; 
+}
+
+.form-container ul li {
+  font-size: clamp(12px, 1.1vw, 24px);
+}
+
+.form-container form {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 75%;
+}
+
+.form-container input[type="text"] {
+  font-family: "Oxanium", serif;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  outline: none;
+  background-color: #1F2833;
+  width: 100%;
 }
 
 button[type="submit"] {
-  background-color: rgb(0, 102, 255);
-  color: white;
-  padding: 10px 20px;
-  border-radius: 5px;
+  font-family: "Oxanium", serif;
+  text-transform: uppercase;
   border: none;
   outline: none;
+  background-color: var(--secondary);
+  border-radius: 5px;
+  font-size: clamp(0.75rem, 0.75vw, 2rem);
+  font-weight: 700;
+  padding: 0.75rem 1.5rem;
+  margin-top: 1.5rem;
   cursor: pointer;
   transition: 0.3s;
 }
 
+button[type="submit"] i {
+  margin-left: 0.25rem;
+}
+
 button[type="submit"]:hover {
-  background-color: rgb(0, 132, 255);
+  background-color: #1cddd0;
+}
+
+.form-container span {
+  margin-top: 1.5rem;
+}
+
+.form-container span.hidden {
+  opacity: 0;
+}
+
+.form-container span.active {
+  animation: slideRight 0.3s ease-in-out forwards;
+}
+
+@keyframes slideRight {
+  0% {
+    opacity: 0;
+    transform: translateX(-8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }

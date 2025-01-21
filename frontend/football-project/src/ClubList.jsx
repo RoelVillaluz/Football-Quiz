@@ -25,18 +25,18 @@ function ClubList() {
         document.title = 'Club List'
     }, [])
     
-    return(
-        <>
-            <ol>
-                <h2>Club List</h2>
-                {clubs.map((club) => (
-                    <li key={club._id}>
-                        <span>{club.name}</span>
-                    </li>
-                ))}
-            </ol>
-        </>
-    )
+    // return(
+    //     <>
+    //         <ol>
+    //             <h2>Club List</h2>
+    //             {clubs.map((club) => (
+    //                 <li key={club._id}>
+    //                     <span>{club.name}</span>
+    //                 </li>
+    //             ))}
+    //         </ol>
+    //     </>
+    // )
 }
 
 export default ClubList

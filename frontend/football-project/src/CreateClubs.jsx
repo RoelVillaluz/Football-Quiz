@@ -32,25 +32,25 @@ function CreateClubs() {
         setFormData({ ...formData, name: e.target.value })
     }
 
-    return (
-        <div className="container">
-            <div className="create-section">
-                {error && <p style={{ color: 'red' }}>{error}</p>}
-                {success && <p style={{ color: 'green' }}>{successMessage}</p>}
-                <h1>Create Club</h1>
-                <form onSubmit={handleFormSubmit}>
-                    <div className="form-group">
-                        <label>Name: </label>
-                        <input 
-                        type="text"
-                        value={formData.name}
-                        onChange={handleChange} />
-                    </div>
-                    <button type="submit">Create club</button>
-                </form>
-            </div>
-        </div>
-    )
+    // return (
+    //     <div className="container">
+    //         <div className="create-section">
+    //             {error && <p style={{ color: 'red' }}>{error}</p>}
+    //             {success && <p style={{ color: 'green' }}>{successMessage}</p>}
+    //             <h1>Create Club</h1>
+    //             <form onSubmit={handleFormSubmit}>
+    //                 <div className="form-group">
+    //                     <label>Name: </label>
+    //                     <input 
+    //                     type="text"
+    //                     value={formData.name}
+    //                     onChange={handleChange} />
+    //                 </div>
+    //                 <button type="submit">Create club</button>
+    //             </form>
+    //         </div>
+    //     </div>
+    // )
 }
 
 export default CreateClubs

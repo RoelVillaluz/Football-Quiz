@@ -25,23 +25,23 @@ function PlayerList() {
         document.title = 'Player List'
     }, [])
 
-    return (
-        <>
-            <ol>
-                <h2>Player List</h2>
-                {players.map((player) => (
-                    <li key={player.id}>
-                        <span>{player.name}</span>
-                        <ul style={{ display: 'flex', gap: '1rem', listStyleType: 'none' }}>
-                            {player.clubs.map((club) => (
-                                <li key={club._id}>{club.name}</li>
-                            ))}
-                        </ul>
-                    </li>
-                ))}
-            </ol>
-        </>
-    )
+    // return (
+    //     <>
+    //         <ol>
+    //             <h2>Player List</h2>
+    //             {players.map((player) => (
+    //                 <li key={player.id}>
+    //                     <span>{player.name}</span>
+    //                     <ul style={{ display: 'flex', gap: '1rem', listStyleType: 'none' }}>
+    //                         {player.clubs.map((club) => (
+    //                             <li key={club._id}>{club.name}</li>
+    //                         ))}
+    //                     </ul>
+    //                 </li>
+    //             ))}
+    //         </ol>
+    //     </>
+    // )
 }
 
 export default PlayerList

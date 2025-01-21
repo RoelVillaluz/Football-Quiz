@@ -55,40 +55,40 @@ function CreatePlayers() {
         setFormData({...formData, clubs: selectedOptions })
     }
 
-    return (
-        <div className="container">
-            <div className="create-section">
-                <h1>Create a Player</h1>
+    // return (
+    //     <div className="container">
+    //         <div className="create-section">
+    //             <h1>Create a Player</h1>
 
-                {error && <p style={{ color: 'red ' }}>{error}</p>}
-                {success && <p style={{ color: 'green'}}>{successMessage}</p>}
+    //             {error && <p style={{ color: 'red ' }}>{error}</p>}
+    //             {success && <p style={{ color: 'green'}}>{successMessage}</p>}
 
-                <form onSubmit={handleFormSubmit}>
-                    <div className="form-group">
-                        <label>Name: </label>
-                        <input 
-                            type="text" 
-                            name="name" 
-                            value={formData.name} 
-                            onChange={(e) => setFormData({ ...formData, name: e.target.value })} 
-                            required/>
-                    </div>
-                    <div className="form-group">
-                        <label>Clubs:</label>
-                        <Select
-                            name="clubs"
-                            value={formData.clubs}
-                            options={clubs} // Set options for React-Select
-                            onChange={handleChange}
-                            isMulti // Allow multiple selections
-                            placeholder="Select clubs..."
-                        />
-                    </div>
-                    <button type="submit">Create Player</button>
-                </form>
-            </div>
-        </div>
-    )
+    //             <form onSubmit={handleFormSubmit}>
+    //                 <div className="form-group">
+    //                     <label>Name: </label>
+    //                     <input 
+    //                         type="text" 
+    //                         name="name" 
+    //                         value={formData.name} 
+    //                         onChange={(e) => setFormData({ ...formData, name: e.target.value })} 
+    //                         required/>
+    //                 </div>
+    //                 <div className="form-group">
+    //                     <label>Clubs:</label>
+    //                     <Select
+    //                         name="clubs"
+    //                         value={formData.clubs}
+    //                         options={clubs} // Set options for React-Select
+    //                         onChange={handleChange}
+    //                         isMulti // Allow multiple selections
+    //                         placeholder="Select clubs..."
+    //                     />
+    //                 </div>
+    //                 <button type="submit">Create Player</button>
+    //             </form>
+    //         </div>
+    //     </div>
+    // )
 }
 
 export default CreatePlayers

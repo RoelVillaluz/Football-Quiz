@@ -38,7 +38,7 @@ export const createPlayer = async(req, res) => {
 
 
     try {
-        const existingPlayer = Player.findOne({ name: player.name })
+        const existingPlayer = await Player.findOne({ name: player.name })
 
         if (existingPlayer) {
             return res.status(400).json({ success: false, message: 'Player already exists' })
