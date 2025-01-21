@@ -11,6 +11,7 @@
 html {
   font-size: 16px;
   color: white;
+  font-family: "Oxanium", serif;
 }
 
 body {
@@ -29,24 +30,30 @@ a {
 }
 
 .navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: var(--primary);
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 1rem;
+  width: 100%;
+  z-index: 100;
 }
 
 .navbar ul {
   display: flex;
   list-style-type: none;
+  padding: 0 2rem;
 }
 
-.navbar ul li {
-  position: relative;
+.navbar li {
+  font-family: "Oxanium", serif;
   z-index: 2;
 }
 
 .navbar ul li a {
-  font-family: "Oxanium", serif;
   font-size: clamp(0.75rem, 0.9vw, 1.25rem);
   text-transform: uppercase;
   position: relative;
@@ -70,7 +77,7 @@ a {
 
 .logo span {
   color: white;
-  font-size: clamp(1.5rem, 2.5vw, 3rem);
+  font-size: clamp(1.25rem, 2vw, 3rem);
   text-transform: uppercase;
 }
 
@@ -91,6 +98,10 @@ a {
   filter: invert(1);
   mix-blend-mode: difference;
   margin-left: 0.5rem;
+}
+
+.content {
+  margin-top: 2rem;
 }
 
 .container {
@@ -144,7 +155,7 @@ a {
   font-family: "Oxanium", serif;
 }
 
-.form-container figure {
+.form-container .player-image-container {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -220,7 +231,67 @@ button[type="submit"]:hover {
 }
 
 .form-container span.active {
-  animation: slideRight 0.3s ease-in-out forwards;
+  animation: slideRight 0.2s ease-in-out forwards;
+}
+
+section header {
+  position: relative;
+  padding-left: 0.75rem;
+}
+
+section header h1 {
+  margin: 0;
+}
+
+section header::before {
+  position: absolute;
+  content: '';
+  background-color: #0B0C10;
+  width: 4px;
+  height: 100%;
+  left: -4px;
+}
+
+section header i {
+  margin-left: 0.5rem;
+}
+
+.list-container {
+  height: 100%;
+  padding: 2rem;
+  background-color: white;
+  color: #0B0C10;
+  padding-top: 4rem;
+}
+
+.list-container ul {
+  list-style-type: none;
+}
+
+.letter-group {
+  margin: 3rem 0;
+  padding-bottom: 3rem;
+  border-bottom: solid 1px rgb(20, 20, 20, 0.3);
+}
+
+.letter-item {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: #0B0C10;
+  color: white;
+}
+
+.list-container a {
+  color: #0B0C10;
+}
+
+#club-list {
+  list-style-type: disc;
+  display: flex;
+  align-items: center;
+  gap: 5rem;
+  flex-wrap: wrap;
+  font-weight: 700;
 }
 
 @keyframes slideRight {
