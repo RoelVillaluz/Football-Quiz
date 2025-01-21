@@ -6,6 +6,10 @@ const clubSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
+    image: {
+        type: String,
+        required: false
+    }
 })
 
 const Club = mongoose.model('Club', clubSchema);
