@@ -1,5 +1,6 @@
 import ClubList from "./ClubList"
 import PlayerList from "./PlayerList"
+import ClubDetail from "./ClubDetail"
 import CreatePlayers from "./CreatePlayers"
 import CreateClubs from "./CreateClubs"
 import Navbar from "./Navbar"
@@ -14,14 +15,18 @@ function App() {
 
         <Navbar/>
 
-          <Routes>
-            <Route path={"/"} element={<GuessingGame/>}/>
-            <Route path="/clubs" element={<ClubList/>}/>
-            <Route path="/players" element={<PlayerList/>}/>
-            <Route path='/create-players' element={<CreatePlayers/>}/>
-            <Route path='/create-clubs' element={<CreateClubs/>}/>
-            
-          </Routes>
+          <div className="content">
+            <Routes>
+              <Route path={"/"} element={<GuessingGame/>}/>
+              <Route path="/clubs" element={<ClubList/>}/>
+              <Route path='/clubs/:id/:name' element={<ClubDetail/>}/>
+
+              <Route path="/players" element={<PlayerList/>}/>
+              <Route path='/create-players' element={<CreatePlayers/>}/>
+              <Route path='/create-clubs' element={<CreateClubs/>}/>
+
+            </Routes>
+          </div>
           
       </Router>
     </>
