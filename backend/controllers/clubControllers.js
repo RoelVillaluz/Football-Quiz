@@ -11,6 +11,21 @@ export const getClubs = async (req, res) => {
     }
 }
 
+// GET /api/clubs/id (retrieve one clubs)
+export const getClub = async (req, res) => {
+    const { id } = req.params
+
+    try {
+        const club = await Club.findById(id)
+        if (!club) {
+            res.status(404).json({ success: false, message: 'Error, club not found' })
+        }
+        return res.status(200).json({ success: true, message: 'Club fetched successfully', data: club });
+    } catch (error) {
+        res.status(500).json({ success: false, message: 'Server error' });
+    }
+}
+
 // POST /api/clubs (create a new club)
 export const createClub = async (req, res) => {
     const club = req.body;
