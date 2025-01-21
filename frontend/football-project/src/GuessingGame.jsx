@@ -14,13 +14,13 @@ function GuessingGame() {
                     throw new Error(`HTTP error! Status: ${response.status}`)
                 }
                 const responseData = await response.json();
-                console.log(responseData.data)
                 setRandomPlayer(responseData.data)
             } catch (error) {
                 console.error('Error', error)
             }
         }
         fetchRandomPlayer()
+        document.title = "Who's the Baller"
     }, [])
 
     function handleChange(e) {
@@ -52,7 +52,7 @@ function GuessingGame() {
                 </div>
                 {randomPlayer && (
                     <div className="form-container">
-                        <figure>
+                        <figure className="player-image-container">
                             <span>?</span>
                         </figure>
                         <ul>
@@ -65,11 +65,8 @@ function GuessingGame() {
                         </ul>
                         <form action="" onSubmit={handleSubmit}>
                             <input type="text" onChange={handleChange}/>
-                            <button type="submit">Submit<i class="fa-solid fa-angle-right"></i></button>
+                            <button type="submit">Submit<i className="fa-solid fa-angle-right"></i></button>
                         </form>
-                        {/* {hasSubmitted !== false && (
-                            <p>{guessedCorrectly === true ? 'You guessed correctly' : 'Incorrect guess, try again'}</p>
-                        )} */}
                         <span className={hasSubmitted ? 'active': 'hidden'}>
                             {guessedCorrectly ? 'You guessed correctly' : 'Incorrect Guess'}
                         </span>
