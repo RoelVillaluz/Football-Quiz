@@ -18,7 +18,7 @@ export const getClub = async (req, res) => {
     try {
         const club = await Club.findById(id)
         if (!club) {
-            res.status(404).json({ success: false, message: 'Error, club not found' })
+            res.status(404).json({ success: false, message: 'Error: club not found' })
         }
         return res.status(200).json({ success: true, message: 'Club fetched successfully', data: club });
     } catch (error) {

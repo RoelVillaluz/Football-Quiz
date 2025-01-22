@@ -11,6 +11,22 @@ export const getPlayers = async (req, res) => {
     }
 }
 
+// GET /api/players/:id (retrieve one players)
+export const getPlayer = async (req, res) => {
+    const { id } = req.params
+
+    try {
+        const player = await Player.findById(id).populate('clubs', 'name')
+        if (!player) {
+            res.status(404).json({ success: false, message: 'Error: player not found' })
+        }
+        res.status(200).json({ success: true, message: 'Player fetched successfully', data: player }) 
+    } catch (error) {
+        console.error('Error fetching players', error)
+        res.status(500).json({ success: false, message: 'Server error' });
+    }
+}
+
 export const getRandomPlayer = async (req, res) => {
     try {
         const players = await Player.find().populate('clubs', 'name');

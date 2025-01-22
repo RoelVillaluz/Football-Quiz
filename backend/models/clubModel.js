@@ -10,6 +10,7 @@ const clubSchema = new mongoose.Schema({
         type: String,
         required: false
     }
+    // add reference later for players
 })
 
 const Club = mongoose.model('Club', clubSchema);
