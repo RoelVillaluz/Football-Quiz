@@ -8,6 +8,12 @@
   --secondary-dark: #45A29E;
 }
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 html {
   font-size: 16px;
   color: white;
@@ -15,9 +21,6 @@ html {
 }
 
 body {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
   background-color: var(--primary);
 }
 
@@ -37,7 +40,7 @@ a {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 1rem;
+  padding: 0.5rem 1rem;
   width: 100%;
   z-index: 100;
 }
@@ -139,11 +142,17 @@ a {
   z-index: 0;  
 }
 
+.wrapper {
+  display: flex;
+  align-items: center;
+}
+
 .form-container {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 1rem;
   flex-direction: column;
   width: 50vw;
   height: auto;
@@ -199,7 +208,7 @@ a {
   width: 100%;
 }
 
-button[type="submit"] {
+button {
   font-family: "Oxanium", serif;
   text-transform: uppercase;
   border: none;
@@ -214,11 +223,11 @@ button[type="submit"] {
   transition: 0.3s;
 }
 
-button[type="submit"] i {
+button i {
   margin-left: 0.25rem;
 }
 
-button[type="submit"]:hover {
+button:hover {
   background-color: #1cddd0;
 }
 
@@ -234,7 +243,7 @@ button[type="submit"]:hover {
   animation: slideRight 0.2s ease-in-out forwards;
 }
 
-section header {
+section header:has(h1) {
   position: relative;
   padding-left: 0.75rem;
 }
@@ -256,7 +265,10 @@ section header i {
   margin-left: 0.5rem;
 }
 
-.list-container {
+.list-container, 
+.player-profile,
+.club-details
+{
   height: 100%;
   padding: 2rem;
   background-color: white;
@@ -282,16 +294,63 @@ section header i {
 }
 
 .list-container a {
+  position: relative;
   color: #0B0C10;
 }
 
-#club-list {
+.list-container a::before {
+  position: absolute;
+  content: '';
+  background-color: #0B0C10;
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  transition: 0.3s;
+} 
+
+.list-container a:hover::before {
+  width: 100%;
+}
+
+.player-profile, 
+.club-details
+{
+  height: 100%;
+  min-height: 100vh;
+}
+
+#club-list,
+#player-list
+{
   list-style-type: disc;
   display: flex;
   align-items: center;
   gap: 5rem;
+  padding: 3rem;
   flex-wrap: wrap;
   font-weight: 700;
+}
+
+.player-club-list {
+  padding: 0 1rem;
+  padding-top: 5rem;
+}
+
+.player-club-list ul {
+  display: flex;
+  list-style-type: none;
+  gap: 3rem;
+  margin-top: 1rem;
+}
+
+.edit-link {
+  margin-left: 0.5rem;
+  padding: 8px 16px;
+  font-size: 0.75rem;
+  background-color: var(--primary-light);
+  color: white;
+  text-decoration: none;
+  border-radius: 30px;
 }
 
 @keyframes slideRight {
