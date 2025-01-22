@@ -71,6 +71,12 @@ function GuessingGame() {
                         <figure className="player-image-container">
                             <span>?</span>
                         </figure>
+                        {guessedCorrectly && (
+                            <h1 
+                                className={`random-player ${!guessedCorrectly ? 'hidden': 'reveal-animation'}`}>
+                                {randomPlayer.name}
+                            </h1>
+                        )}
                         <ul>
                             {randomPlayer.clubs.map((club, index) => (
                                 <li key={club._id}>
