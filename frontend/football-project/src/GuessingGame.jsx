@@ -87,11 +87,24 @@ function GuessingGame() {
                         </ul>
                         <form action="" onSubmit={handleSubmit}>
                             <input type="text" onChange={handleChange} value={guess}/>
-                            {!guessedCorrectly ? (
-                                <button type="submit">Submit<i className="fa-solid fa-angle-right"></i></button>
-                            ) : (
-                                <button onClick={handleNewGame}>New Game<i className="fa-solid fa-angle-right"></i></button>
-                            )}
+                            <div className="button-list">
+                                {!guessedCorrectly ? (
+                                    <>
+                                        <button className="guess" type="submit">
+                                            Submit
+                                            <i className="fa-solid fa-angle-right"></i>
+                                        </button>
+                                        <button className="skip" onClick={handleNewGame}>
+                                            Skip
+                                        </button>
+                                    </>
+                                ) : (
+                                    <button className="guess" onClick={handleNewGame}>
+                                        New Game
+                                        <i className="fa-solid fa-angle-right"></i>
+                                    </button>
+                                )}
+                            </div>
                         </form>
                         <span className={hasSubmitted ? 'active': 'hidden'}>
                             {guessedCorrectly ? 'You guessed correctly' : 'Incorrect Guess'}
