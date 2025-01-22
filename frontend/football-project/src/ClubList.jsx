@@ -41,7 +41,7 @@ function ClubList() {
         <>
             <section className="list-container">
                 <header>
-                    <h1>Club List</h1>
+                    <h1>Club List ({clubs.length})</h1>
                 </header>
                 <ul>
                     {sortedLetters.map((letter) => (

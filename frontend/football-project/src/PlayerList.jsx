@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 function PlayerList() {
 
@@ -25,23 +26,41 @@ function PlayerList() {
         document.title = 'Player List'
     }, [])
 
-    // return (
-    //     <>
-    //         <ol>
-    //             <h2>Player List</h2>
-    //             {players.map((player) => (
-    //                 <li key={player.id}>
-    //                     <span>{player.name}</span>
-    //                     <ul style={{ display: 'flex', gap: '1rem', listStyleType: 'none' }}>
-    //                         {player.clubs.map((club) => (
-    //                             <li key={club._id}>{club.name}</li>
-    //                         ))}
-    //                     </ul>
-    //                 </li>
-    //             ))}
-    //         </ol>
-    //     </>
-    // )
+    const groupedItems = players.reduce((acc, item) => {
+        const firstLetter = item.name[0].toUpperCase();
+        if (!acc[firstLetter]) {
+            acc[firstLetter] = [];
+        }
+        acc[firstLetter].push(item);
+        return acc;
+    }, {});
+
+    const sortedLetters = Object.keys(groupedItems).sort()
+
+    return (
+        <section className="list-container">
+            <header>
+                <h1>Player List ({players.length})</h1>
+            </header>
+            <ul>
+                {sortedLetters.map((letter, index) => (
+                    <li key={letter} className="letter-group">
+                        <h2 className="letter-item">{letter}</h2>
+                        <ul id="player-list">
+                            {groupedItems[letter]
+                                .sort((a, b) => a.name.localeCompare(b.name))
+                                .map((player) => (
+                                    <li key={player._id}>
+                                        <Link to={`/players/${player._id}/${player.name}`}>{player.name}</Link>
+                                    </li>
+                                ))
+                            }
+                        </ul>
+                    </li>
+                ))}
+            </ul>
+        </section>
+    )
 }
 
 export default PlayerList
