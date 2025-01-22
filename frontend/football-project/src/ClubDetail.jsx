@@ -34,7 +34,6 @@ function ClubDetail() {
                             {club.name}
                             <i className="fa-solid fa-shield"></i>
                         </h1>
-                        {/* Update Link path to match your route structure */}
                         <Link className="edit-link" to={`/clubs/${id}/${name}/edit`}>
                             Edit Club
                             <i class="fa-solid fa-up-right-from-square"></i>
@@ -42,7 +41,6 @@ function ClubDetail() {
                     </div>
                     <span>Football Club</span>
                 </header>
-                {club.image && <img src={club.image} alt={`${club.name} logo`} />}
             </section>
         </>
     );

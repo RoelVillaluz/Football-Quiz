@@ -11,20 +11,32 @@ export const getClubs = async (req, res) => {
     }
 }
 
-// GET /api/clubs/id (retrieve one clubs)
+// GET /api/clubs/:id (retrieve one club)
 export const getClub = async (req, res) => {
-    const { id } = req.params
+    const { id } = req.params;
 
     try {
-        const club = await Club.findById(id)
+        const club = await Club.findById(id);
         if (!club) {
-            res.status(404).json({ success: false, message: 'Error: club not found' })
+            return res.status(404).json({ success: false, message: 'Club not found' });
         }
+
+        // replace backslashes with forward slashes
+        if (club.image) {
+            club.image = club.image.replace(/\\/g, '/'); 
+
+            // Adjust image path for frontend usage (get filename only)
+            club.image = `/club_icons/${club.image.split('/').pop()}`;
+        } else {
+            // If no image exists, remove the image field from the response
+            delete club.image;
+        }
+
         return res.status(200).json({ success: true, message: 'Club fetched successfully', data: club });
     } catch (error) {
-        res.status(500).json({ success: false, message: 'Server error' });
+        return res.status(500).json({ success: false, message: 'Server error' });
     }
-}
+};
 
 // POST /api/clubs (create a new club)
 export const createClub = async (req, res) => {
@@ -56,15 +68,26 @@ export const createClub = async (req, res) => {
 // PATCH /api/clubs/:id (update a club)
 export const updateClub = async (req, res) => {
     const { id } = req.params;
-
     const club = req.body;
+
+    // If there's an image in the request, update the club's image field
+    if (req.file) {
+        club.image = req.file.path.replace('frontend/football-project/public/', ''); // Adjust image path
+    }
+
     try {
         const updatedClub = await Club.findByIdAndUpdate(id, club, { new: true });
+
+        if (!updatedClub) {
+            return res.status(404).json({ success: false, message: 'Club not found' });
+        }
+
         res.status(200).json({ success: true, data: updatedClub });
     } catch (error) {
+        console.error('Error updating club:', error);
         res.status(500).json({ success: false, message: 'Server Error' });
     }
-}
+};
 
 // DELETE /api/clubs/:id (delete club)
 export const deleteClub = async (req, res) => {

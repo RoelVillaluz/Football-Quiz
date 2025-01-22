@@ -96,12 +96,12 @@ function GuessingGame() {
                                             Submit
                                             <i className="fa-solid fa-angle-right"></i>
                                         </button>
-                                        <button className="skip" onClick={handleNewGame}>
+                                        <button className="next" onClick={handleNewGame}>
                                             Skip
                                         </button>
                                     </>
                                 ) : (
-                                    <button className="guess" onClick={handleNewGame}>
+                                    <button className="next" onClick={handleNewGame}>
                                         New Game
                                         <i className="fa-solid fa-angle-right"></i>
                                     </button>

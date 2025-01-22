@@ -6,6 +6,7 @@ function PlayerList() {
     const [players, setPlayers] = useState([]);
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
+    const [search, setSearch] = useState("");
 
     useEffect(() => {
         const fetchPlayers = async () => {
@@ -37,11 +38,37 @@ function PlayerList() {
 
     const sortedLetters = Object.keys(groupedItems).sort()
 
+    function handleChange(e) {
+        setSearch(e.target.value)
+    }
+
+    function generateListItem() {
+        const matchingPlayers = players.filter(player => (
+            player.name.toLowerCase().includes(search.toLowerCase())
+        ))
+
+        if (search.length >= 2 && matchingPlayers.length > 0) {
+            return (
+                <ul className="search-dropdown-list">
+                    {matchingPlayers.map((player) => (
+                        <li className="search-dropdown-item" key={player._id}>
+                            <Link to={`/players/${player._id}/${player.name}`}>{player.name}</Link>
+                        </li>
+                    ))}
+                </ul>
+            )
+        }
+    }
+
     return (
         <section className="list-container">
             <header>
                 <h1>Player List ({players.length})</h1>
             </header>
+            <div className="search-bar">
+                <input type="text" value={search} onChange={handleChange} placeholder="Search players..."/>
+                {generateListItem()}
+            </div>
             <ul>
                 {sortedLetters.map((letter, index) => (
                     <li key={letter} className="letter-group">
