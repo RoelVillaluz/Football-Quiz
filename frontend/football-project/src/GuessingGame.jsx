@@ -39,6 +39,11 @@ function GuessingGame() {
         }
 
         setHasSubmitted(true)
+        setGuess("")
+    }
+
+    function handleNewGame() {
+        fetchRandomPlayer()
     }
 
     return(
