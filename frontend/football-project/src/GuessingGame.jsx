@@ -55,6 +55,8 @@ function GuessingGame() {
 
     function handleNewGame() {
         fetchRandomPlayer()
+        setGuess("");
+        setHasSubmitted(false)
     }
 
     return(
@@ -106,9 +108,11 @@ function GuessingGame() {
                                 )}
                             </div>
                         </form>
-                        <span className={hasSubmitted ? 'active': 'hidden'}>
-                            {guessedCorrectly ? 'You guessed correctly' : 'Incorrect Guess'}
-                        </span>
+                        {hasSubmitted && (
+                            <span className={`feedback ${guessedCorrectly ? 'success': 'error'}`}>
+                                {guessedCorrectly? 'You guessed correctly': 'Incorrect guess'}
+                            </span>
+                        )}
                     </div>
                 )}
             </div>

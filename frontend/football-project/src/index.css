@@ -208,12 +208,16 @@ a {
   width: 100%;
 }
 
-button {
+.button-list {
+  display: flex;
+  gap: 1rem;
+}
+
+.button-list button {
   font-family: "Oxanium", serif;
   text-transform: uppercase;
   border: none;
   outline: none;
-  background-color: var(--secondary);
   border-radius: 5px;
   font-size: clamp(0.75rem, 0.75vw, 2rem);
   font-weight: 700;
@@ -221,6 +225,14 @@ button {
   margin-top: 1.5rem;
   cursor: pointer;
   transition: 0.3s;
+}
+
+.button-list button.guess {
+  background-color: var(--secondary);
+}
+
+.button-list button.skip {
+  background-color: white;
 }
 
 button i {
@@ -351,6 +363,34 @@ section header i {
   color: white;
   text-decoration: none;
   border-radius: 30px;
+}
+
+.random-player.reveal-animation {
+  animation: slideRight 0.3s ease-in-out forwards;
+}
+
+.hidden {
+  opacity: 0;
+}
+
+.feedback {
+  background-color: var(--primary-light);
+  padding: clamp(8px, 1vw, 16px) clamp(16px, 1.5vw, 24px);
+  border-radius: 30px;
+  font-size: clamp(0.75rem, 1vw, 1.5rem);
+  opacity: 0;
+}
+
+.feedback.error {
+  color: rgb(255, 0, 0);
+  background-color: #271919;
+  animation: slideRight 0.3s ease-in-out forwards;
+}
+
+.feedback.success {
+  color: rgb(0, 255, 34);
+  background-color: #1e2719;
+  animation: slideRight 0.3s ease-in-out forwards;
 }
 
 @keyframes slideRight {
