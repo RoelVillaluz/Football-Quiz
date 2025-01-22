@@ -1,26 +1,37 @@
 import { useEffect, useState } from "react"
 
 function GuessingGame() {
-    const [randomPlayer, setRandomPlayer] = useState();
+    const [randomPlayer, setRandomPlayer] = useState(); 
+    const [previousPlayer, setPreviousPlayer] = useState(null)
     const [guessedCorrectly, setGuessedCorrectly] = useState(false);
     const [guess, setGuess] = useState('');
     const [hasSubmitted, setHasSubmitted] = useState(false);
 
-    useEffect(() => {
-        const fetchRandomPlayer = async () => {
-            try {
-                const response = await fetch('http://localhost:5000/api/players/random');
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`)
-                }
-                const responseData = await response.json();
-                setRandomPlayer(responseData.data)
-            } catch (error) {
-                console.error('Error', error)
+    const fetchRandomPlayer = async () => {
+        try {
+            const response = await fetch('http://localhost:5000/api/players/random');
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`)
             }
+            const responseData = await response.json();
+            
+            if (previousPlayer && responseData.data._id === previousPlayer._id) {
+                return fetchRandomPlayer();
+            }
+
+            setRandomPlayer(responseData.data)
+            setPreviousPlayer(responseData.data._id); // Update the previous player ID
+            setGuessedCorrectly(false);
+            setGuess('');
+            setHasSubmitted(false);
+        } catch (error) {
+            console.error('Error', error)
         }
+    }
+
+    useEffect(() => {
         fetchRandomPlayer()
-        document.title = "Who's the Baller"
+        document.title = "Who's the Baller";
     }, [])
 
     function handleChange(e) {
@@ -69,8 +80,12 @@ function GuessingGame() {
                             ))}
                         </ul>
                         <form action="" onSubmit={handleSubmit}>
-                            <input type="text" onChange={handleChange}/>
-                            <button type="submit">Submit<i className="fa-solid fa-angle-right"></i></button>
+                            <input type="text" onChange={handleChange} value={guess}/>
+                            {!guessedCorrectly ? (
+                                <button type="submit">Submit<i className="fa-solid fa-angle-right"></i></button>
+                            ) : (
+                                <button onClick={handleNewGame}>New Game<i className="fa-solid fa-angle-right"></i></button>
+                            )}
                         </form>
                         <span className={hasSubmitted ? 'active': 'hidden'}>
                             {guessedCorrectly ? 'You guessed correctly' : 'Incorrect Guess'}
