@@ -15,8 +15,9 @@ const app = express();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Middleware to serve static files from the 'club icons' directory
+// Middleware to serve static files from the 'club icons' and 'player icons' directory
 app.use('/club_icons', express.static(path.join(__dirname, 'frontend', 'football-project' , 'public', 'club_icons')));
+app.use('/player_icons', express.static(path.join(__dirname, 'frontend', 'football-project', 'public', 'player_icons')));
 
 app.use(cors()); 
 app.use(express.json()); 

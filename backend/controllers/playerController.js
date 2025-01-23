@@ -11,15 +11,25 @@ export const getPlayers = async (req, res) => {
     }
 }
 
-// GET /api/players/:id (retrieve one players)
+// GET /api/players/:id (retrieve one player)
 export const getPlayer = async (req, res) => {
     const { id } = req.params
 
     try {
-        const player = await Player.findById(id).populate('clubs', 'name')
+        const player = await Player.findById(id).populate('clubs', 'name image')
         if (!player) {
             res.status(404).json({ success: false, message: 'Error: player not found' })
         }
+
+        if (player.image) {
+            console.log("Original player image:", player.image); // Debugging: Check original image
+            player.image = player.image.replace(/\\/g, '/');
+            player.image = `/player_icons/${player.image.split('/').pop()}`;
+            console.log("Normalized player image:", player.image); // Debugging: Check normalized path
+        } else {
+            player.image = '/player_icons/default.png';
+        }
+
         res.status(200).json({ success: true, message: 'Player fetched successfully', data: player }) 
     } catch (error) {
         console.error('Error fetching players', error)
@@ -41,6 +51,13 @@ export const getRandomPlayer = async (req, res) => {
                     club.image = `/club_icons/${club.image.split('/').pop()}`;
                 }
             });
+
+            if (randomPlayer.image) {
+                randomPlayer.image = randomPlayer.image.replace(/\\/g, '/');
+                randomPlayer.image = `/player_icons/${randomPlayer.image.split('/').pop()}`;
+            } else {
+                randomPlayer.image = `/player_icons/default.png`
+            }
 
             res.status(200).json({ success: true, data: randomPlayer });
         } else {
@@ -80,17 +97,34 @@ export const createPlayer = async(req, res) => {
 }
 
 // PUT /api/players:id (update player)
-export const updatePlayer = async(req, res) => {
-    const { id } =  req.params;
-    const player = req.body;
-
+export const updatePlayer = async (req, res) => {
+    const { id } = req.params;
     try {
-        const updatedPlayer = await Player.findByIdAndUpdate(id, player, { new: true });
-        res.status(200).json({ success: true, data: updatedPlayer });
+        const player = await Player.findById(id);
+        if (!player) {
+            return res.status(404).json({ success: false, message: 'Player not found' });
+        }
+
+        // If a new image is uploaded, update the player's image field
+        if (req.file) {
+            const imagePath = `/player_icons/${req.file.filename}`;
+            player.image = imagePath;
+        }
+
+        // Update the other player fields
+        player.name = req.body.name || player.name;
+        player.clubs = JSON.parse(req.body.clubs) || player.clubs;
+
+        // Save the updated player
+        await player.save();
+
+        res.status(200).json({ success: true, message: 'Player updated successfully', data: player });
     } catch (error) {
-        console.log(error);
+        console.error('Error updating player:', error);
+        res.status(500).json({ success: false, message: 'Server error' });
     }
-}
+};
+
 
 // DELETE /api/players:id (update player)
 export const deletePlayer = async(req, res) => {

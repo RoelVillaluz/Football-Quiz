@@ -14,7 +14,6 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-
 const router = express.Router();
 
 router.get('/', getClubs);
