@@ -32,6 +32,10 @@ a {
   text-decoration: none;
 }
 
+button {
+  font-family: "Oxanium", serif;
+}
+
 .navbar {
   position: fixed;
   top: 0;
@@ -224,7 +228,6 @@ a {
 }
 
 .button-list button {
-  font-family: "Oxanium", serif;
   text-transform: uppercase;
   border: none;
   outline: none;
@@ -502,6 +505,140 @@ a {
 .profile header i {
   color: var(--primary);
   font-size: 1.5rem;
+}
+
+.edit-section {
+  background-color: white;
+  height: 100%;
+  min-height: 100vh;
+}
+
+.edit-section h1 {
+  color: var(--primary);
+  padding-bottom: 1rem;
+  border-bottom: solid 1px rgba(20, 20, 20, 0.1);
+}
+
+.edit-form-container {
+  margin-top: 2rem;
+  padding: 2.5rem;
+}
+
+.edit-form-container form {
+  display: flex;
+  flex-direction: column;
+}
+
+.edit-form-container * {
+  color: var(--primary);
+}
+
+.edit-image-container {
+  display: inline-block;
+  border-radius: 5px;
+  margin-top: 1.5rem;
+}
+
+.edit-image-container i {
+  color: var(--primary);
+}
+
+.edit-image-container i:not(.image-box i) {
+  background-color: rgb(245, 245, 245);
+  padding: 20px;
+  border-radius: 50%;
+  font-size: 0.9rem;
+}
+
+.edit-image-container p {
+  margin: 0;
+  margin-top: 4px;
+  color: #3b3b3b;
+}
+
+.image-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 30vw;
+  aspect-ratio: 2 / 1;
+  border: dashed 2px #a0a0a0;
+  border-radius: 5px;
+  margin-top: 1rem;
+  padding: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.image-box input[type="file"] {
+  display: none;
+}
+
+.image-box:hover {
+  background-color: #f3f3f3;
+}
+
+.image-box i {
+  font-size: 1.1rem;
+}
+
+.image-box span {
+  font-weight: 700;
+  margin-top: 1rem;
+}
+
+.image-box p {
+  text-align: center;
+  max-width: 75%;
+  margin-top: 0.5rem;
+}
+
+.edit-form-container .actions {
+  display: flex;
+  gap: 0.75rem;
+  align-self: self-end;
+}
+
+.edit-form-container .actions button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.edit-form-container .actions button.reset {
+  border: solid 1px #a0a0a0;
+}
+
+.edit-form-container .actions button.reset:hover {
+  background-color: rgb(224, 224, 224);
+}
+
+.edit-form-container .actions button.submit {
+  color: white;
+  background-color: var(--primary-light);
+}
+
+.edit-form-container .actions button.submit:hover {
+  background-color: #141d29;
+}
+
+.edit-form-container .form-group {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem 0;
+  font-weight: 700;
+}
+
+.edit-form-container .form-group input {
+  padding: 10px 12px;
+  border-radius: 5px;
+  border: solid 1px #C5C6C7;
+  outline: none;
+  margin-top: 0.5rem;
 }
 
 @keyframes slideRight {
