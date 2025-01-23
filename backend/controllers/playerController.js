@@ -29,20 +29,29 @@ export const getPlayer = async (req, res) => {
 
 export const getRandomPlayer = async (req, res) => {
     try {
-        const players = await Player.find().populate('clubs', 'name');
+        const players = await Player.find().populate('clubs', 'name image'); // Include image
 
         if (players.length > 0) {
             const randomPlayer = players[Math.floor(Math.random() * players.length)];
-            res.status(200).json({ success: true, data: randomPlayer })
+
+            // Normalize image paths for all clubs
+            randomPlayer.clubs.forEach(club => {
+                if (club.image) {
+                    club.image = club.image.replace(/\\/g, '/'); 
+                    club.image = `/club_icons/${club.image.split('/').pop()}`;
+                }
+            });
+
+            res.status(200).json({ success: true, data: randomPlayer });
         } else {
-            res.status(404).json({ success: false, message: 'No players found' })
+            res.status(404).json({ success: false, message: 'No players found' });
         }
     } catch (error) {
-        console.error('Error', error)
+        console.error('Error', error);
         res.status(500).json({ success: false, message: 'Server error' });
-    }    
+    }
+};
 
-}
 
 // POST /api/players (create a new player)
 export const createPlayer = async(req, res) => {
