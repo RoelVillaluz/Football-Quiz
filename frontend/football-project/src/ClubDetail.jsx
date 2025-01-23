@@ -27,19 +27,22 @@ function ClubDetail() {
 
     return (
         <>
-            <section className="club-details">
+            <section className="profile">
                 <header>
                     <div className="wrapper">
-                        <h1>
-                            {club.name}
-                            <i className="fa-solid fa-shield"></i>
-                        </h1>
-                        <Link className="edit-link" to={`/clubs/${id}/${name}/edit`}>
-                            Edit Club
-                            <i class="fa-solid fa-up-right-from-square"></i>
-                        </Link>
+                        <figure className="club-logo">
+                            <img src={club.image} alt="" />
+                        </figure>
+                        <div>
+                            <div className="wrapper" style={{alignItems: 'start', gap: 0}}>
+                                <h1>{club.name}</h1>
+                                <Link to={`/clubs/${id}/${name}/edit`}>
+                                    <i class="fa-regular fa-pen-to-square"></i>
+                                </Link>
+                            </div>
+                            <span>Football Club</span>
+                        </div>
                     </div>
-                    <span>Football Club</span>
                 </header>
             </section>
         </>

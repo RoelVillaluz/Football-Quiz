@@ -82,8 +82,11 @@ function GuessingGame() {
                         <ul>
                             {randomPlayer.clubs.map((club, index) => (
                                 <li key={club._id}>
-                                    <span>{club.name}</span>
-                                    {index < randomPlayer.clubs.length - 1 && ' - '}
+                                    {club.image ? (
+                                        <img src={club.image} alt={club.name} className="club-image"/>
+                                    ) : (
+                                        <span>{club.name}</span>
+                                    )}
                                 </li>
                             ))}
                         </ul>
