@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 
 function PlayerDetail() {
     const { id, name } = useParams();
@@ -34,6 +34,9 @@ function PlayerDetail() {
                 <header>
                     <div className="wrapper">
                         <h1>{player.name}<i className="fa-regular fa-futbol"></i></h1>
+                        <Link to={`/players/${id}/edit/${name}`}>
+                            <i class="fa-regular fa-pen-to-square"></i>
+                        </Link>
                     </div>
                     <span>Footballer</span>
                 </header>

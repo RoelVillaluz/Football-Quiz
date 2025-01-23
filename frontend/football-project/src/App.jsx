@@ -1,13 +1,16 @@
-import ClubList from "./ClubList"
-import PlayerList from "./PlayerList"
-import ClubDetail from "./ClubDetail"
-import CreatePlayers from "./CreatePlayers"
-import CreateClubs from "./CreateClubs"
+import ClubList from "./Clubs/ClubList"
+import CreateClubs from "./Clubs/CreateClubs"
+import ClubDetail from "./Clubs/ClubDetail"
+import EditCLub from "./Clubs/EditClub"
+
+import PlayerList from "./Players/PlayerList"
+import CreatePlayers from "./Players/CreatePlayers"
+import PlayerDetail from "./Players/PlayerDetail"
+import EditPlayer from "./Players/EditPlayer"
+
 import Navbar from "./Navbar"
-import PlayerDetail from "./PlayerDetail"
 import GuessingGame from "./GuessingGame"
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
-import EditCLub from "./EditClub"
 
 function App() {
 
@@ -19,6 +22,8 @@ function App() {
 
           <div className="content">
             <Routes>
+              
+              {/* MAIN */}
               <Route path={"/"} element={<GuessingGame/>}/>
 
               {/* CLUBS */}
@@ -32,7 +37,7 @@ function App() {
               <Route path="/players" element={<PlayerList/>}/>
               <Route path="/players/:id/:name" element={<PlayerDetail/>}/>
               <Route path='/create-players' element={<CreatePlayers/>}/>
-
+              <Route path='/players/:id/:name/edit' element={<EditPlayer/>}/>
 
             </Routes>
           </div>
