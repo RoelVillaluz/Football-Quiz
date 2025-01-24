@@ -1,0 +1,79 @@
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+    width: 100%;
+    z-index: 100;
+}
+
+.navbar ul {
+    display: flex;
+    list-style-type: none;
+    padding: 0 2rem;
+}
+
+.navbar li {
+    font-family: "Oxanium", serif;
+    z-index: 2;
+}
+
+.navbar ul li a {
+    font-size: clamp(0.75rem, 0.9vw, 1.25rem);
+    text-transform: uppercase;
+    position: relative;
+    color: white;
+    transition: 0.3s;
+    border-radius: 30px;
+    transition: 0.3s;
+}
+
+.navbar ul li a::before {
+   position: absolute;
+   content: '';
+   background-color: white;
+   width: 0;
+   height: 2px;
+   bottom: -8px;
+   left: 0;
+   transition: 0.3s;
+}
+
+.navbar ul li a:hover::before {
+    width: 100%;
+}
+
+.logo {
+    font-family: "Jockey One", serif;
+    display: flex;
+    align-items: center;
+}
+
+.logo span {
+    color: white;
+    font-size: clamp(1.25rem, 2vw, 3rem);
+    text-transform: uppercase;
+}
+
+.logo .highlight {
+    background: #66FCF1;
+    background: linear-gradient(to right, #66FCF1 0%, #7FEDFC 100%);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.logo i {
+    font-size: 2rem;
+    color: white;
+    margin-left: 0.5rem;
+}
+
+.colored-icon {
+    filter: invert(1);
+    mix-blend-mode: difference;
+    margin-left: 0.5rem;
+}
