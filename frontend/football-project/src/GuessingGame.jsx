@@ -75,7 +75,7 @@ function GuessingGame() {
                                 ? 
                                 <span>?</span> 
                                 : 
-                                <img src={randomPlayer.image}></img>}
+                                <img src={`http://localhost:5000${randomPlayer.image}`} alt="Player" />}
                         </figure>
                         {guessedCorrectly && (
                             <h1 
@@ -87,7 +87,7 @@ function GuessingGame() {
                             {randomPlayer.clubs.map((club, index) => (
                                 <li key={club._id}>
                                     {club.image ? (
-                                        <img src={club.image} alt={club.name} className="club-image"/>
+                                        <img src={`http://localhost:5000${club.image}`} alt={club.name} className="club-image"/>
                                     ) : (
                                         <span>{club.name}</span>
                                     )}

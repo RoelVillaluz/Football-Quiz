@@ -31,7 +31,7 @@ function ClubDetail() {
                 <header>
                     <div className="wrapper">
                         <figure className="club-logo">
-                            <img src={club.image} alt="" />
+                            <img src={`http://localhost:5000${club.image}`} alt="" />
                         </figure>
                         <div>
                             <div className="wrapper" style={{alignItems: 'start', gap: 0}}>

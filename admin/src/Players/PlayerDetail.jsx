@@ -13,7 +13,7 @@ function PlayerDetail() {
                 console.log(response.data)
                 setPlayer({
                     ...response.data.data,
-                    image: response.data.data.image || '/player_icons/default.png',
+                    image: response.data.data.image || 'http://localhost:5000/player_icons/default.png',
                     clubs: response.data.data.clubs || []
                 })
             } catch (error) {
@@ -33,7 +33,7 @@ function PlayerDetail() {
         <>
             <section className="player-profile">
                 <header>
-                    <img src={player.image} style={{ width: "120px", height: "120px", objectFit: 'cover' }} alt="" />
+                    <img src={`http://localhost:5000${player.image}`} style={{ width: "120px", height: "120px", objectFit: 'cover' }} alt="" />
                     <div className="wrapper">
                         <h1>{player.name}<i className="fa-regular fa-futbol"></i></h1>
                         <Link to={`/players/${id}/${name}/edit`}>
