@@ -1,11 +1,31 @@
 @import url('https://fonts.googleapis.com/css2?family=Jockey+One&family=Oxanium:wght@200..800&family=Racing+Sans+One&display=swap');
 
+:root {
+  --primary: #0B0C10;
+  --secondary: #66FCF1;
+  --tertiary: #C5C6C7;
+  --primary-light: #1F2833;
+  --secondary-dark: #45A29E;
+}
+
 * {
-  font-family: 'Oxanium', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  color: white;
+  font-family: "Oxanium", serif;
 }
 
 a {
   text-decoration: none;
+}
+
+.content {
+  margin-top: 2rem;
 }
 
 .wrapper {
