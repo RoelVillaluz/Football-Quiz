@@ -71,7 +71,11 @@ function GuessingGame() {
                 {randomPlayer && (
                     <div className="form-container">
                         <figure className="player-image-container">
-                            <span>?</span>
+                            {!guessedCorrectly 
+                                ? 
+                                <span>?</span> 
+                                : 
+                                <img src={randomPlayer.image}></img>}
                         </figure>
                         {guessedCorrectly && (
                             <h1 

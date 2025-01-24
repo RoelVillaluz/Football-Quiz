@@ -183,6 +183,12 @@ button {
   font-size: clamp(0.75rem, 1.5vw, 2rem);
 }
 
+.form-container figure img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
 .form-container ul {
   display: flex;
   align-items: center;
