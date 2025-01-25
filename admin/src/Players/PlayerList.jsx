@@ -1,31 +1,30 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import SearchBar from "../components/Searchbar";
 
 function PlayerList() {
-
     const [players, setPlayers] = useState([]);
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
-    const [search, setSearch] = useState("");
 
     useEffect(() => {
         const fetchPlayers = async () => {
             try {
                 const response = await fetch('http://localhost:5000/api/players');
                 if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`)
+                    throw new Error(`HTTP error! Status: ${response.status}`);
                 }
                 const responseData = await response.json();
-                setPlayers(responseData.data)
+                setPlayers(responseData.data);
             } catch (error) {
                 setError(error.message);
             } finally {
                 setIsLoading(false);
             }
-        }
-        fetchPlayers()
-        document.title = 'Player List'
-    }, [])
+        };
+        fetchPlayers();
+        document.title = 'Player List';
+    }, []);
 
     const groupedItems = players.reduce((acc, item) => {
         const firstLetter = item.name[0].toUpperCase();
@@ -36,28 +35,10 @@ function PlayerList() {
         return acc;
     }, {});
 
-    const sortedLetters = Object.keys(groupedItems).sort()
+    const sortedLetters = Object.keys(groupedItems).sort();
 
-    function handleChange(e) {
-        setSearch(e.target.value)
-    }
-
-    function generateListItem() {
-        const matchingPlayers = players.filter(player => (
-            player.name.toLowerCase().includes(search.toLowerCase())
-        ))
-
-        if (search.length >= 2 && matchingPlayers.length > 0) {
-            return (
-                <ul className="search-dropdown-list">
-                    {matchingPlayers.map((player) => (
-                        <li className="search-dropdown-item" key={player._id}>
-                            <Link to={`/players/${player._id}/${player.name}`}>{player.name}</Link>
-                        </li>
-                    ))}
-                </ul>
-            )
-        }
+    if (isLoading) {
+        return <p>Loading...</p>  
     }
 
     return (
@@ -65,12 +46,13 @@ function PlayerList() {
             <header>
                 <h1>Player List ({players.length})</h1>
             </header>
-            <div className="search-bar">
-                <input type="text" value={search} onChange={handleChange} placeholder="Search players..."/>
-                {generateListItem()}
-            </div>
+            <SearchBar
+                data={players}
+                searchPlaceholder="Search players..."
+                pathPrefix="players"
+            />
             <ul>
-                {sortedLetters.map((letter, index) => (
+                {sortedLetters.map((letter) => (
                     <li key={letter} className="letter-group">
                         <h2 className="letter-item">{letter}</h2>
                         <ul id="player-list">
@@ -87,7 +69,7 @@ function PlayerList() {
                 ))}
             </ul>
         </section>
-    )
+    );
 }
 
-export default PlayerList
+export default PlayerList;

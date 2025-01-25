@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom";
+import SearchBar from "../components/Searchbar";
 
 function ClubList() {
 
@@ -43,6 +44,11 @@ function ClubList() {
                 <header>
                     <h1>Club List ({clubs.length})</h1>
                 </header>
+                <SearchBar 
+                    data={clubs}
+                    searchPlaceholder="Search clubs..."
+                    pathPrefix="clubs" 
+                />
                 <ul>
                     {sortedLetters.map((letter) => (
                         <li key={letter} className="letter-group">
