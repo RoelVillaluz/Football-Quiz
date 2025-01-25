@@ -392,6 +392,127 @@ a {
   animation: skeleton-loading 3s ease-in-out infinite;
 }
 
+.dashboard {
+  padding: 2rem;
+  padding-top: 4rem;
+  color: var(--primary);
+}
+
+.dashboard header {
+  position: relative;
+  width: 100%;
+  padding-left: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: solid 1px rgba(20, 20, 20, 0.1);
+}
+
+.dashboard header::before {
+  position: absolute;
+  content: '';
+  width: 4px;
+  height: 100%;
+  background-color: var(--primary);
+  left: -1rem;
+  top: 0;
+}
+
+.dashboard header p {
+  color: #7a7a7a;
+}
+
+.stats {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.stat-card {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 25%;
+  padding: 1.25rem;
+  border-radius: 1rem;
+  box-shadow: 0px 0px 2px 0px rgba(0,0,0,0.7);
+}
+
+#player-stat-card {
+  background: #060B46;
+  background: repeating-linear-gradient(to bottom right, #0B0C10 0%, rgb(21, 25, 31) 50%, rgb(32, 37, 46) 100%);
+  color: white;
+}
+
+.stat-card .wrapper {
+  justify-content: space-between;
+}
+
+.stat-card h3 {
+  font-size: clamp(1rem, 1.25vw, 3rem);
+  font-weight: 400;
+}
+
+.stat-card a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 1);
+  width: clamp(1.5rem, 2.75vw, 3rem);
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  font-size: clamp(0.5rem, 1vw, 1.25rem);
+  transition: 0.3s;
+}
+
+.stat-card #arrow-link {
+  color: black;
+  transform: rotate(-45deg);
+  transition: 0.3s;
+}
+
+#player-stat-card a:hover {
+  background-color: var(--primary-light);
+  color: rgba(255, 255, 255, 0.3);
+}
+
+#player-stat-card a:hover #arrow-link {
+  color: white;
+}
+
+.stat-card .fa-user {
+  font-size: clamp(2rem, 3vw, 6rem);
+}
+
+.stat-card .count,
+.stat-card .stat-icon
+{
+  font-size: clamp(2rem, 3vw, 6rem);
+  color: white;
+  margin-top: 2.5rem;
+}
+
+#club-stat-card {
+  background: linear-gradient(to bottom right, #FFFFFF 0%, #f5f5f5 100%);
+}
+
+#club-stat-card .stat-icon,
+#club-stat-card .count
+{
+  color: var(--primary);
+}
+
+#club-stat-card a {
+  background-color: rgb(250, 250, 250);
+  color: var(--primary);
+  border: solid 1px rgb(200, 200, 200);
+}
+
+#club-stat-card a:hover {
+  background-color: var(--primary);
+}
+
+#club-stat-card a:hover i {
+  color: white;
+}
+
 @keyframes skeleton-loading {
   0% {
     background-color: var(--skeleton);
