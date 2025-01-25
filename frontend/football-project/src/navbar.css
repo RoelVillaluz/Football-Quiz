@@ -13,6 +13,7 @@
 
 .navbar ul {
     display: flex;
+    gap: 2.5rem;
     list-style-type: none;
     padding: 0 2rem;
 }

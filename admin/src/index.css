@@ -6,6 +6,7 @@
   --tertiary: #C5C6C7;
   --primary-light: #1F2833;
   --secondary-dark: #45A29E;
+  --skeleton: #e4e4e4;
 }
 
 * {
@@ -372,7 +373,41 @@ a {
 .edit-form-container .form-group input {
   padding: 10px 12px;
   border-radius: 5px;
-  border: solid 1px #C5C6C7;
+  border: solid 1px var(--skeleton);
   outline: none;
   margin-top: 0.5rem;
+}
+
+.skeleton-player-image {
+  background-color: #e4e4e4;
+  width: 120px;
+  aspect-ratio: 1 / 1;
+  animation: skeleton-loading 3s ease-in-out infinite;
+}
+
+.skeleton-text {
+  background-color: var(--skeleton);
+  width: clamp(4rem, 15vw, 12rem);
+  height: clamp(1rem, 5vh, 6rem);
+  animation: skeleton-loading 3s ease-in-out infinite;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-color: var(--skeleton);
+    background-image: linear-gradient(
+      90deg,
+      var(--skeleton) 0%,
+      rgba(255, 255, 255, 0.4) 50%,
+      var(--skeleton) 100%
+    );
+    background-size: 200% 100%;
+    background-position: -100% 0;
+  }
+  50% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: 100% 0;
+  }
 }
