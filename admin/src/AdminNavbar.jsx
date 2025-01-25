@@ -7,6 +7,7 @@ function AdminNavbar() {
             <Navbar isAdmin={true}>
                 <ul>
                     <li><Link to={'/players'}>Players</Link></li>
+                    <li><Link to={'/clubs'}>Clubs</Link></li>
                 </ul>
             </Navbar>
         </>
