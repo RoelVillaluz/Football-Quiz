@@ -114,7 +114,15 @@ function EditPlayer() {
             <section className="edit-section">
                 <div className="edit-form-container">
                     <header>
-                        <h1>Edit {player.name}</h1>
+                        <div className="wrapper">
+                            <figure className="player-icon">
+                                <img src={`http://localhost:5000${player.image}`} alt="" />
+                            </figure>
+                            <div>
+                                <h1>Edit Player</h1>
+                                <span className="name">{player.name}</span>
+                            </div>
+                        </div>
                     </header>
                     <form action="" onSubmit={handleFormSubmit}>
 
@@ -141,6 +149,7 @@ function EditPlayer() {
                         <div className="form-group">
                             <label>Clubs:</label>
                             <Select
+                                className="select-form"
                                 name="clubs"
                                 value={formData.clubs}
                                 options={clubs} // Set options for React-Select
