@@ -25,7 +25,7 @@ function Dashboard() {
                             </Link>
                         </div>
                         <div className="wrapper" style={{ alignItems: 'start', justifyContent: "start", gap: '0.5rem' }}>
-                            <i class="fa-solid fa-user stat-icon"></i>
+                            <i className="fa-solid fa-user stat-icon"></i>
                             <span className="count">{players.length}</span>
                         </div>
                         <span className="update"></span>
