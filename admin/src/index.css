@@ -358,6 +358,7 @@ a {
   margin-top: 0.5rem;
 }
 
+
 .edit-form-container .actions {
   display: flex;
   gap: 0.75rem;
@@ -396,6 +397,23 @@ a {
   flex-direction: column;
   margin: 1rem 0;
   font-weight: 700;
+}
+
+.edit-form-container .image-preview {
+  width: 25%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+
+.edit-form-container .image-name {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #3b3b3b;
+  font-weight: 400;
+  max-width: 50%;
 }
 
 .edit-form-container .form-group label {
@@ -549,6 +567,57 @@ a {
 
 #club-stat-card a:hover i {
   color: white;
+}
+
+.notification {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  bottom: 5%;
+  right: 1%;
+  padding: 0.5rem 0.75rem;
+  background-color: white;
+  color: var(--primary);
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.3);
+  transition: 1s;
+}
+
+.notification.hidden {
+  opacity: 0;
+  transform: translateY(25px);
+}
+
+.notification.show {
+
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.notification img {
+  height: 70px;
+  width: 70px;
+  object-fit: cover;
+}
+
+.notification::before {
+  position: absolute;
+  content: '';
+  background-color: #060B46;
+  width: 100%;
+  height: 100%;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  border-radius: 5px;
+  clip-path: polygon(0 0, 2% 0, 2% 100%, 0% 100%);
+
+  z-index: 2;
+}
+
+.notification span {
+  font-size: 0.9rem;
 }
 
 @keyframes skeleton-loading {
