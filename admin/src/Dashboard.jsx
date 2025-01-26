@@ -1,33 +1,12 @@
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom";
+import { useData } from "./DataProvider";
 
 function Dashboard() {
-    const [players, setPlayers] = useState([]);
-    const [error, setError] = useState(null);
-    const [isLoading, setIsLoading] = useState(true);
+    const { players, setPlayers, clubs, setClubs, isLoading, setIsLoading, error, setError } = useData();
 
     useEffect(() => {
         document.title = 'Admin Dashboard'
-    }, [])
-
-    useEffect(() => {
-        const fetchPlayers = async () => {
-            try {
-                const response = await fetch('http://localhost:5000/api/players')
-                if (!response.ok) {
-                    throw new Error('Erorr', response.status)
-                }
-                const responseData = await response.json()
-
-                console.log(responseData.data)
-                setPlayers(responseData.data)
-            } catch (error) {
-                console.error('Error', error)
-            } finally {
-                setIsLoading(false)
-            }
-        }
-        fetchPlayers();
     }, [])
     
     return (
@@ -62,7 +41,7 @@ function Dashboard() {
                         </div>
                         <div className="wrapper" style={{ alignItems: 'start', justifyContent: "start", gap: '0.5rem' }}>
                             <i class="fa-solid fa-shield stat-icon"></i>
-                            <span className="count">0</span>
+                            <span className="count">{clubs.length}</span>
                         </div>
                     </div>
                 </section>

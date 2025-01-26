@@ -12,31 +12,34 @@ import PlayerDetail from "./Players/PlayerDetail";
 import EditPlayer from "./Players/EditPlayer";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import DataProvider from "./DataProvider";
 
 function App() {
   return (
     <>
-      <Router>
-        <AdminNavbar />
-        <div className="content">
-          <Routes>
-            {/* Homepage */}
-            <Route path="/" element={<Dashboard />} />
+      <DataProvider>
+        <Router>
+          <AdminNavbar />
+          <div className="content">
+            <Routes>
+              {/* Homepage */}
+              <Route path="/" element={<Dashboard />} />
 
-            {/* CLUBS */}
-            <Route path="/clubs" element={<ClubList />} />
-            <Route path="/clubs/:id/:name" element={<ClubDetail />} />
-            <Route path="/create-clubs" element={<CreateClubs />} />
-            <Route path="/clubs/:id/:name/edit" element={<EditCLub />} />
+              {/* CLUBS */}
+              <Route path="/clubs" element={<ClubList />} />
+              <Route path="/clubs/:id/:name" element={<ClubDetail />} />
+              <Route path="/create-clubs" element={<CreateClubs />} />
+              <Route path="/clubs/:id/:name/edit" element={<EditCLub />} />
 
-            {/* PLAYERS */}
-            <Route path="/players" element={<PlayerList />} />
-            <Route path="/players/:id/:name" element={<PlayerDetail />} />
-            <Route path="/create-players" element={<CreatePlayers />} />
-            <Route path="/players/:id/:name/edit" element={<EditPlayer />} />
-          </Routes>
-        </div>
-      </Router>
+              {/* PLAYERS */}
+              <Route path="/players" element={<PlayerList />} />
+              <Route path="/players/:id/:name" element={<PlayerDetail />} />
+              <Route path="/create-players" element={<CreatePlayers />} />
+              <Route path="/players/:id/:name/edit" element={<EditPlayer />} />
+            </Routes>
+          </div>
+        </Router>
+      </DataProvider>
     </>
   );
 }
