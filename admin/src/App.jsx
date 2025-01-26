@@ -19,7 +19,9 @@ function App() {
     <>
       <DataProvider>
         <Router>
+
           <AdminNavbar />
+
           <div className="content">
             <Routes>
               {/* Homepage */}
@@ -38,6 +40,7 @@ function App() {
               <Route path="/players/:id/:name/edit" element={<EditPlayer />} />
             </Routes>
           </div>
+
         </Router>
       </DataProvider>
     </>

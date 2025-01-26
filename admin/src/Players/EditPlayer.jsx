@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import axios from "axios"
 import { Link, useParams } from "react-router-dom"
+import StatusNotification from "../components/StatusNotification";
 import Select from "react-select";
 
 function EditPlayer() {
@@ -100,7 +101,7 @@ function EditPlayer() {
             // Refetch player data after update
             const updatedPlayer = response.data.data;
             setPlayer(updatedPlayer);
-            setFormData({ name: "", clubs: [], image: null });
+            setFormData({ image: null });
         } catch (error) {
             console.error('Error updating player', error);
             setError(error.response?.data?.message || "Something went wrong");
@@ -129,9 +130,18 @@ function EditPlayer() {
                         <div className="edit-image-container">
 
                             <div className="image-box" onClick={() => document.getElementById('file-input').click()}>
-                                <i className="fa-solid fa-image"></i>
-                                <span>Drag file here to upload.</span>
-                                <p>Or you can select file by <span className="highlight">clicking here</span></p>
+                                {imagePreview ? (
+                                    <>
+                                        <img src={imagePreview} alt=""className="image-preview" />
+                                        <span className="image-name">{formData.image?.name}</span >
+                                    </>
+                                ) : (
+                                    <>
+                                        <i className="fa-solid fa-image"></i>
+                                        <span>Drag file here to upload.</span>
+                                        <p>Or you can select file by <span className="highlight">clicking here</span></p>
+                                    </>
+                                )}
                                 <input type="file" name="image" id="file-input" onChange={handleInputChange}/>
                             </div>
                             
@@ -167,6 +177,10 @@ function EditPlayer() {
                     </form>
                 </div>
             </section>
+            {success && (
+                <StatusNotification type="Player" object={player} action="updated" visible={true}/>
+            )}
+
         </>
     )
 }
