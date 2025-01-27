@@ -1,4 +1,5 @@
 import { set } from "mongoose";
+import axios from "axios";
 import { Children, createContext, useContext, useEffect, useState } from "react";
 
 const DataContext = createContext();
@@ -8,8 +9,9 @@ export const useData = () => useContext(DataContext);
 function DataProvider({ children }) {
     const [players, setPlayers] = useState([]);
     const [clubs, setClubs] = useState([]);
-    const [club, setClub] = useState();
+    const [club, setClub] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
+    const [success, setSuccess] = useState(false);
     const [error, setError] = useState(null);
 
     // fetch clubs and or players
@@ -55,6 +57,9 @@ function DataProvider({ children }) {
             players, setPlayers,
             clubs, setClubs,
             club, setClub, 
+            isLoading, setIsLoading,
+            success, setSuccess,
+            error, setError,
             fetchClub,
         }}>
             {children}
