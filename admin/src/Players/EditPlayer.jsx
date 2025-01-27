@@ -101,7 +101,14 @@ function EditPlayer() {
             // Refetch player data after update
             const updatedPlayer = response.data.data;
             setPlayer(updatedPlayer);
-            setFormData({ image: null });
+            setFormData({ 
+                name: updatedPlayer.name, 
+                image: updatedPlayer.image, 
+                clubs: updatedPlayer.clubs.map((club) => ({
+                    value: club._id,
+                    label: club.name
+                }))
+            });
         } catch (error) {
             console.error('Error updating player', error);
             setError(error.response?.data?.message || "Something went wrong");
@@ -178,7 +185,7 @@ function EditPlayer() {
                 </div>
             </section>
             {success && (
-                <StatusNotification type="Player" object={player} action="updated" visible={true}/>
+                <StatusNotification type="Player" object={player} action="updated" visible={true} duration={3000}/>
             )}
 
         </>
