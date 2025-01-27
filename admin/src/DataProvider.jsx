@@ -1,3 +1,4 @@
+import { set } from "mongoose";
 import { Children, createContext, useContext, useEffect, useState } from "react";
 
 const DataContext = createContext();
@@ -7,9 +8,11 @@ export const useData = () => useContext(DataContext);
 function DataProvider({ children }) {
     const [players, setPlayers] = useState([]);
     const [clubs, setClubs] = useState([]);
+    const [club, setClub] = useState();
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
 
+    // fetch clubs and or players
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -36,10 +39,21 @@ function DataProvider({ children }) {
         fetchData();
     }, [])
 
+    const fetchClub = async (id) => {
+        try {
+            const response = await axios.get(`http://localhost:5000${id}`)
+            setClub(response.data.data)
+        } catch (error) {
+            console.error('Error', error)
+        }
+    };
+
     return (
         <DataContext.Provider value={{
             players, setPlayers,
             clubs, setClubs,
+            club, setClub, 
+            fetchClub,
         }}>
             {children}
         </DataContext.Provider>
