@@ -41,10 +41,12 @@ function DataProvider({ children }) {
 
     const fetchClub = async (id) => {
         try {
-            const response = await axios.get(`http://localhost:5000${id}`)
+            const response = await axios.get(`http://localhost:5000/api/clubs/${id}`)
             setClub(response.data.data)
         } catch (error) {
             console.error('Error', error)
+        } finally {
+            setIsLoading(false)
         }
     };
 
