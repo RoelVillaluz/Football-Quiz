@@ -37,7 +37,7 @@ function ClubDetail() {
                             <div className="wrapper" style={{alignItems: 'start', gap: 0}}>
                                 <h1>{club.name}</h1>
                                 <Link to={`/clubs/${id}/${name}/edit`}>
-                                    <i class="fa-regular fa-pen-to-square"></i>
+                                    <i className="fa-regular fa-pen-to-square"></i>
                                 </Link>
                             </div>
                             <span>Football Club</span>
