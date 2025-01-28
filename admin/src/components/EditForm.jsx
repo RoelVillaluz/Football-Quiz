@@ -21,7 +21,12 @@ function EditForm({ model, objectToEdit }) {
             setFormData({
                 name: objectToEdit.name || "",
                 image: objectToEdit.image || "",
-                clubs: model === 'players' ? objectToEdit.clubs || [] : [], 
+                clubs: model === 'players' ? 
+                (objectToEdit.clubs || []).map((club) => ({
+                    value: club._id,
+                    label: club.name
+                }))
+                : []
             });
         }
     }, [objectToEdit]); 
