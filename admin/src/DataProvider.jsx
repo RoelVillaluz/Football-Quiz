@@ -70,9 +70,10 @@ function DataProvider({ children }) {
 
     return (
         <DataContext.Provider value={{
+            player,setPlayer,
+            club, setClub, 
             players, setPlayers,
             clubs, setClubs,
-            club, setClub, 
             isLoading, setIsLoading,
             success, setSuccess,
             error, setError,
