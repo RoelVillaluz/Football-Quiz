@@ -7,20 +7,23 @@ const DataContext = createContext();
 export const useData = () => useContext(DataContext);
 
 function DataProvider({ children }) {
+    const [player, setPlayer] = useState(null);
     const [players, setPlayers] = useState([]);
-    const [clubs, setClubs] = useState([]);
     const [club, setClub] = useState(null);
+    const [clubs, setClubs] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [success, setSuccess] = useState(false);
     const [error, setError] = useState(null);
+
+    const baseUrl = 'http://localhost:5000/api'
 
     // fetch clubs and or players
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const [playerResponse, clubResponse] = await Promise.all([
-                    fetch('http://localhost:5000/api/players'),
-                    fetch('http://localhost:5000/api/clubs'),
+                    fetch(`${baseUrl}/players`),
+                    fetch(`${baseUrl}/clubs`),
                 ])
                 if (!playerResponse.ok || !clubResponse.ok) {
                     throw new Error('Error fetching data')
@@ -43,8 +46,21 @@ function DataProvider({ children }) {
 
     const fetchClub = async (id) => {
         try {
-            const response = await axios.get(`http://localhost:5000/api/clubs/${id}`)
+            const response = await axios.get(`${baseUrl}/clubs/${id}`)
+            console.log(response.data.data)
             setClub(response.data.data)
+        } catch (error) {
+            console.error('Error', error)
+        } finally {
+            setIsLoading(false)
+        }
+    };
+
+    const fetchPlayer = async (id) => {
+        try {
+            const response = await axios.get(`${baseUrl}/players/${id}`)
+            console.log(response.data.data)
+            setPlayer(response.data.data)
         } catch (error) {
             console.error('Error', error)
         } finally {
@@ -61,6 +77,7 @@ function DataProvider({ children }) {
             success, setSuccess,
             error, setError,
             fetchClub,
+            fetchPlayer,
         }}>
             {children}
         </DataContext.Provider>
