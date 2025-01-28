@@ -16,6 +16,22 @@ function EditForm({ model, objectToEdit }) {
     });
 
     useEffect(() => {
+        const fetchClubs = async() => {
+            try {
+                const response = await axios.get("http://localhost:5000/api/clubs");
+                const options = response.data.data.map((club) => ({
+                    value: club._id,
+                    label: club.name
+                }));
+                setClubs(options)
+            } catch (error) {
+                setError(error)
+            }
+        }
+        fetchClubs();
+    }, []);
+
+    useEffect(() => {
         if (objectToEdit) {
             console.log("objectToEdit:", objectToEdit); 
             setFormData({
