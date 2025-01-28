@@ -2,14 +2,15 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import EditForm from "../components/EditForm";
 import { useData } from "../DataProvider";
+import StatusNotification from "../components/StatusNotification";
 
 function EditClub() {
     const { id } = useParams();  
-    const { club, fetchClub, isLoading } = useData();
+    const { club, fetchClub, isLoading, success } = useData();
 
     useEffect(() => {
         fetchClub(id);
-    }, [id, fetchClub]);
+    }, [id]);
 
     return (
         <section className="edit-section">
@@ -34,6 +35,9 @@ function EditClub() {
                     </div>
                 </header>
                 <EditForm model="clubs" objectToEdit={club} />
+                {success && (
+                    <StatusNotification type="Club" object={club} action="updated" visible={true} duration={3000}/>
+                )}
             </div>
         </section>
     );
