@@ -24,7 +24,7 @@ function EditForm({ model, objectToEdit }) {
                 clubs: model === 'players' ? objectToEdit.clubs || [] : [], 
             });
         }
-    }, [id, model]); 
+    }, [objectToEdit]); 
 
     const handleInputChange = (e) => {
         const { name, value, files } = e.target;
@@ -86,7 +86,6 @@ function EditForm({ model, objectToEdit }) {
             setError(error.response?.data?.message || "Something went wrong");
             setSuccess(false);
         }
-
     };
 
     return (
