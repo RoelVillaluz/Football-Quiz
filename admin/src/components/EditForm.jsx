@@ -49,6 +49,15 @@ function EditForm({ model, objectToEdit }) {
         }));
     };
 
+    const handleReset = async (e) => {
+        setFormData((prev) => ({
+            name: objectToEdit.name,
+            clubs: model === "players" ? objectToEdit.clubs || [] : [],
+            image: null
+        }))
+        setImagePreview(null)
+    }
+
     const handleFormSubmit = async (e) => {
         e.preventDefault();
         const formDataToSend = new FormData();
@@ -128,7 +137,7 @@ function EditForm({ model, objectToEdit }) {
             )}
 
             <div className="actions">
-                <button type="button" className="reset">Reset</button>
+                <button type="button" className="reset" onClick={handleReset}>Reset</button>
                 <button type="submit" className="submit">Submit</button>
             </div>
         </form>
